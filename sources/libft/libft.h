@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:02:03 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/15 21:36:20 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:42:56 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 
 int		ft_putnbr(int n);
 int		ft_isdigit(int c);
-int	        ft_putchar(char c);
+int		ft_putchar(char c);
 int		ft_putstr(char *s);
 int		ft_atoi(const char *nptr);
-int     	ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s);
@@ -45,6 +45,5 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
-
 
 #endif

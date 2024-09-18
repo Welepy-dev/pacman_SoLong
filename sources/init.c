@@ -6,21 +6,33 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/15 20:18:41 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:31:53 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    init_map(t_map *map)
+void    init_map(t_map *map, const char* filename)
 {
     map->matrix = NULL;
-    map->width = 0;
-    map->height = 0;
+    map->width = count_columns(filename) * 32;
+    map->height = count_lines(filename) * 32;
     map->player_x = 0;
     map->player_y = 0;
     map->is_map_valid = true;   //create a function that checks if the map is valid before initializing
     map->is_map_exitable = true; //create a function that checks if the map is exitable before initializing
+}
+
+void    init_window(t_window *window, const char* filename, void *mlx, void *mlx_win)
+{
+    window->mlx = NULL;
+    window->win = NULL;
+    window->width = count_columns(filename) * 32;
+    window->height = count_lines(filename) * 32;
+    window->title = "so_long";
+    mlx = mlx_init();
+    mlx_win = mlx_new_window(mlx, window->width, window->height, window->title);
+    mlx_loop(mlx);
 }
 
 void    init_tiles(t_tiles *tiles)
@@ -45,7 +57,7 @@ void    init_tiles(t_tiles *tiles)
     tiles->outer_left_wall = "../tiles/walls/outer/outer_left_wall.xpm";
     tiles->outer_right_wall = "../tiles/walls/outer/outer_right_wall.xpm";
     tiles->outer_upper_wall = "../tiles/walls/outer/outer_upper_wall.xpm";
-    tiles->center = "../tiles/center.xpm";
-    tiles->enemy = "../tiles/enemy.xpm";
-    tiles->pellet = "../tiles/pellet.xpm";
+    //tiles->center = "../tiles/center.xpm";
+    //tiles->enemy = "../tiles/enemy.xpm";
+    //tiles->pellet = "../tiles/pellet.xpm";
 }

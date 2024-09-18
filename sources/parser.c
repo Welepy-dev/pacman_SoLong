@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/15 21:37:10 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:18:59 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int     count_lines(const char *filename)
         fd = open(filename, O_RDONLY);
         if (fd == -1)
         {
-                ft_printf("Error opening file\n");
+                ft_printf("Error opening file1\n");
                 return (-1);
         }
         str = get_next_line(fd);
@@ -36,19 +36,50 @@ int     count_lines(const char *filename)
         return (lines);
 }
 
+int     count_columns(const char *filename)
+{
+        int             fd;
+        char    *str;
+        int     rows;
+        int     i;
+
+        rows = 0;
+        fd = open(filename, O_RDONLY);
+        if (fd == -1)
+        {
+                ft_printf("Error opening file3\n");
+                return (-1);
+        }
+        str = get_next_line(fd);
+        while (str)
+        {
+                i = 0;
+                while (str[i])
+                        i++;
+                if (i > rows)
+                        rows = i;
+                free(str);
+                str = get_next_line(fd);
+        }
+        return (rows);
+}
+
 int     parse_map(const char* filename, t_map *map)
 {
         char    *str;
         int             fd;
         int             row;
-        int             line_count;
+        int             lines;
+        int             columns;
 
         row = 0;
-        line_count = count_lines(filename);
-        map->height = line_count;
-        if (line_count == -1)
+        lines = count_lines(filename);
+        columns = count_columns(filename);
+        if (lines == -1)
                 return (-1);
-        map->matrix = malloc(sizeof(char*) * line_count);
+        map->height = lines;
+        map->matrix = malloc(sizeof(char*) * lines);
+        map->matrix[lines] = NULL;
         if (!map->matrix)
         {
                 ft_printf("Memory allocation error\n");
@@ -57,7 +88,7 @@ int     parse_map(const char* filename, t_map *map)
         fd = open(filename, O_RDONLY);
         if (fd == -1)
         {
-                ft_printf("Error opening file\n");
+                ft_printf("Error opening file2\n");
                 free(map->matrix);
                 return -1;
         }

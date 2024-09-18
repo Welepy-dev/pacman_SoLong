@@ -6,13 +6,14 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/15 21:34:38 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:31:23 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include <unistd.h>
 # include <stdbool.h>
 # include "./libft/libft.h"
 # include "../mlx_linux/mlx.h"
@@ -31,6 +32,17 @@ typedef struct s_map
         //variables for player collision
         //variables for time elapsed
 }	t_map;
+
+typedef struct s_window
+{
+        void	*mlx;
+        void	*win;
+        int		width;
+        int		height;
+        char	*title;
+
+}	t_window;
+
 
 typedef struct s_tiles
 {
@@ -97,9 +109,12 @@ typedef struct s_pellet
         //variables for pellet collision
 }	t_pellet;
 
-int    count_lines(const char *filename);
-void    init_map(t_map *map);
 void    init_tiles(t_tiles *tiles);
+void    init_map(t_map *map, const char* filename);
+void    init_window(t_window *window, const char* filename, void *mlx, void *mlx_win);
+
+int    count_lines(const char *filename);
+int    count_columns(const char *filename);
 int    parse_map(const char* filename, t_map *map);
 
 #endif

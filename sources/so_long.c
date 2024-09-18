@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/15 21:25:23 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:35:38 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,29 @@ int	main(int argc, char **argv)
 		void	*img;
 		t_map	map;
 		t_tiles	tiles;
+		t_window	window;
 		int	x, y;
-		int	window_width = 1280; // keep this for now
-		int	window_height = 960; // keep this for now
 		int	img_width;
 		int	img_height;
 		char	*path;
+		int i = 0;
 
-		init_map(&map);
+		init_map(&map, argv[1]);
 		init_tiles(&tiles);
 		parse_map(argv[1], &map);
-		if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4) != 0)
+		init_window(&window, argv[1], mlx, mlx_win);
+		if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4) != 0)
 		{
 			ft_printf("Error\n");
 			return (0);
 		}
-		x = 0;
+		/*while (map.matrix[i])
+		{
+			ft_printf("%s", map.matrix[i]);
+			i++;
+		}*/
+		
+		/*x = 0;
 
 		mlx = mlx_init();
 		mlx_win = mlx_new_window(mlx, window_width, window_height, "so_long");
@@ -56,7 +63,7 @@ int	main(int argc, char **argv)
 			x++;
 			usleep(10000);
 		}
-		mlx_loop(mlx);
+		mlx_loop(mlx);*/
 	}
 	else
 		ft_printf("Error\n");
