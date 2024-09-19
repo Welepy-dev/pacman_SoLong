@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:42:40 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:47:32 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	init_map(t_map *map, const char *file)
 {
 	map->matrix = NULL;
-	map->width = count_columns(filename) * 32;
-	map->height = count_lines(filename) * 32;
+	map->width = count_columns(file) * 32;
+	map->height = count_lines(file) * 32;
 	map->player_x = 0;
 	map->player_y = 0;
 	map->is_map_valid = true;
@@ -27,8 +27,8 @@ void	init_win(t_window *window, const char *file, void *mlx, void *mlx_win)
 {
 	window->mlx = NULL;
 	window->win = NULL;
-	window->width = count_columns(filename) * 32;
-	window->height = count_lines(filename) * 32;
+	window->width = count_columns(file) * 32;
+	window->height = count_lines(file) * 32;
 	window->title = "so_long";
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, window->width, window->height, window->title);

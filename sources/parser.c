@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:22:49 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:47:32 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_lines(const char *file)
 	int		lines;
 
 	lines = 0;
-	fd = open(filename, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_printf("Error opening file1\n");
@@ -44,7 +44,7 @@ int	count_columns(const char *file)
 	int		i;
 
 	rows = 0;
-	fd = open(filename, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_printf("Error opening file3\n");
@@ -73,8 +73,8 @@ int	parse_map(const char *file, t_map *map)
 	int		columns;
 
 	row = 0;
-	lines = count_lines(filename);
-	columns = count_columns(filename);
+	lines = count_lines(file);
+	columns = count_columns(file);
 	if (lines == -1)
 		return (-1);
 	map->height = lines;
@@ -85,7 +85,7 @@ int	parse_map(const char *file, t_map *map)
 		ft_printf("Memory allocation error\n");
 		return (-1);
 	}
-	fd = open(filename, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_printf("Error opening file2\n");
