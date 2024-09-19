@@ -6,13 +6,13 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/18 16:18:59 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:03:59 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int     count_lines(const char *filename)
+int     count_lines(const char *file)
 {
         int             fd;
         char    *str;
@@ -36,7 +36,7 @@ int     count_lines(const char *filename)
         return (lines);
 }
 
-int     count_columns(const char *filename)
+int     count_columns(const char *file)
 {
         int             fd;
         char    *str;
@@ -64,7 +64,7 @@ int     count_columns(const char *filename)
         return (rows);
 }
 
-int     parse_map(const char* filename, t_map *map)
+int     parse_map(const char *file, t_map *map)
 {
         char    *str;
         int             fd;

@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 16:27:42 by welepy            #+#    #+#             */
-/*   Updated: 2024/09/18 16:45:34 by marcsilv         ###   ########.fr       */
+/*   Created: 2024/09/19 11:44:05 by marcsilv          #+#    #+#             */
+/*   Updated: 2024/09/19 11:48:43 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_ptr_len(uintptr_t num)
-{
-	int	len;
-
-	len = 0;
-	while (num != 0)
-	{
-		len++;
-		num = num / 16;
-	}
-	return (len);
-}
+#include "libft.h"
 
 char	*ft_uitoa(unsigned int n)
 {
@@ -42,17 +29,4 @@ char	*ft_uitoa(unsigned int n)
 		len--;
 	}
 	return (num);
-}
-
-int	ft_num_len(unsigned int num)
-{
-	int	len;
-
-	len = 0;
-	while (num != 0)
-	{
-		len++;
-		num = num / 10;
-	}
-	return (len);
 }

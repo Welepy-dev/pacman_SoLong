@@ -6,17 +6,11 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:26:50 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/06/05 13:19:15 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:50:39 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+#include "libft.h"
 
 int	lower(unsigned int decimalnumber)
 {

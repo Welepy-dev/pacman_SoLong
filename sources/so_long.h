@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/18 16:31:23 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:04:01 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdbool.h>
 # include "./libft/libft.h"
 # include "../mlx_linux/mlx.h"
-# include "./libft/printf/ft_printf.h"
 
 typedef struct s_map
 {
@@ -110,11 +109,11 @@ typedef struct s_pellet
 }	t_pellet;
 
 void    init_tiles(t_tiles *tiles);
-void    init_map(t_map *map, const char* filename);
-void    init_window(t_window *window, const char* filename, void *mlx, void *mlx_win);
+void    init_map(t_map *map, const char *file);
+void    init_window(t_window *window, const char *file, void *mlx, void *mlx_win);
 
-int    count_lines(const char *filename);
-int    count_columns(const char *filename);
-int    parse_map(const char* filename, t_map *map);
+int    count_lines(const char *file);
+int    count_columns(const char *file);
+int    parse_map(const char *file, t_map *map);
 
 #endif

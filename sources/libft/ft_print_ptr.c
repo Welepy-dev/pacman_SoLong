@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prints.c                                           :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 16:20:08 by welepy            #+#    #+#             */
-/*   Updated: 2024/09/14 13:25:35 by marcsilv         ###   ########.fr       */
+/*   Created: 2024/09/19 11:39:31 by marcsilv          #+#    #+#             */
+/*   Updated: 2024/09/19 11:50:40 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_print_ptr(unsigned long long ptr)
 {
@@ -42,21 +42,4 @@ void	ft_put_ptr(uintptr_t num)
 		else
 			ft_putchar((num - 10 + 'a'));
 	}
-}
-
-int	ft_print_unsigned(unsigned int n)
-{
-	int		print_length;
-	char	*num;
-
-	print_length = 0;
-	if (n == 0)
-		print_length += write(1, "0", 1);
-	else
-	{
-		num = ft_uitoa(n);
-		print_length += ft_putstr(num);
-		free(num);
-	}
-	return (print_length);
 }
