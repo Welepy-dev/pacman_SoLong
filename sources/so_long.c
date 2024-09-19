@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:45:19 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:55:34 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,22 @@
 
 int	main(int argc, char **argv)
 {
+	t_map	map;
+	t_tiles	tiles;
+	t_win	window;
+
 	if (argc == 2)
 	{
-		void	*mlx;
-		void	*mlx_win;
-		void	*img;
-		t_map	map;
-		t_tiles	tiles;
-		t_window	window;
-		int	x, y;
-		int	img_width;
-		int	img_height;
-		char	*path;
-		int i = 0;
-
 		init_map(&map, argv[1]);
 		init_tiles(&tiles);
 		parse_map(argv[1], &map);
-		init_win(&window, argv[1], mlx, mlx_win);
+		init_win(&window, argv[1], window.mlx, window.win);
 		if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4) != 0)
 		{
 			ft_printf("Error, wrong file extension\n");
 			return (0);
 		}
-		mlx_loop(mlx);
+		mlx_loop(window.mlx);
 	}
 	else
 		ft_printf("Error\n");

@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:47:32 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:55:02 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_map(t_map *map, const char *file)
 	map->is_map_exitable = true;
 }
 
-void	init_win(t_window *window, const char *file, void *mlx, void *mlx_win)
+void	init_win(t_win *window, const char *file, void *mlx, void *mlx_win)
 {
 	window->mlx = NULL;
 	window->win = NULL;

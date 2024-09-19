@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:44:08 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:55:02 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_window
 	int		height;
 	int		time_seconds;
 	int		time_minutes;
-}	t_window;
+}	t_win;
 
 typedef struct s_tiles
 {
@@ -99,7 +99,7 @@ typedef struct s_pellet
 
 void	init_tiles(t_tiles *tiles);
 void	init_map(t_map *map, const char *file);
-void	init_win(t_window *window, const char *file, void *mlx, void *mlx_win);
+void	init_win(t_win *window, const char *file, void *mlx, void *mlx_win);
 
 int		count_lines(const char *file);
 int		count_columns(const char *file);
