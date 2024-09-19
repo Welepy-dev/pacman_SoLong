@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:55:02 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:43:02 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_tiles
 	char	*enemy;
 	char	*coin;
 	char	*pellet;
+	char	*box;
 }	t_tiles;
 
 typedef struct player
@@ -98,11 +99,13 @@ typedef struct s_pellet
 }	t_pellet;
 
 void	init_tiles(t_tiles *tiles);
+void	print_error(char *error, t_map *map);
 void	init_map(t_map *map, const char *file);
 void	init_win(t_win *window, const char *file, void *mlx, void *mlx_win);
 
 int		count_lines(const char *file);
 int		count_columns(const char *file);
 int		parse_map(const char *file, t_map *map);
+void	render_map(t_map *map, t_tiles *tiles, t_win *window);
 
 #endif

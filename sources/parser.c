@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:47:32 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:11:40 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	count_lines(const char *file)
 	lines = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_printf("Error opening file1\n");
-		return (-1);
-	}
+		print_error("Error opening file", NULL);
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -46,10 +43,7 @@ int	count_columns(const char *file)
 	rows = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_printf("Error opening file3\n");
-		return (-1);
-	}
+		print_error("Error opening file", NULL);
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -70,28 +64,18 @@ int	parse_map(const char *file, t_map *map)
 	int		fd;
 	int		row;
 	int		lines;
-	int		columns;
 
 	row = 0;
 	lines = count_lines(file);
-	columns = count_columns(file);
 	if (lines == -1)
 		return (-1);
-	map->height = lines;
 	map->matrix = malloc(sizeof(char *) * lines);
 	map->matrix[lines] = NULL;
 	if (!map->matrix)
-	{
-		ft_printf("Memory allocation error\n");
-		return (-1);
-	}
+		print_error("Error allocating memory", map);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_printf("Error opening file2\n");
-		free(map->matrix);
-		return (-1);
-	}
+		print_error("Error opening file", map);
 	str = get_next_line(fd);
 	while (str)
 	{

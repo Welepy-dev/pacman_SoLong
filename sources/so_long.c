@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:55:34 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:42:25 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ int	main(int argc, char **argv)
 		parse_map(argv[1], &map);
 		init_win(&window, argv[1], window.mlx, window.win);
 		if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4) != 0)
-		{
-			ft_printf("Error, wrong file extension\n");
-			return (0);
-		}
+			print_error("Invalid file extension", &map);
+		render_map(&map, &tiles, &window);
 		mlx_loop(window.mlx);
 	}
 	else
-		ft_printf("Error\n");
+		print_error("Invalid number of arguments", NULL);
 	return (0);
 }

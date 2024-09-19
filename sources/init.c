@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 12:55:02 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:13:25 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ void	init_tiles(t_tiles *tiles)
 	tiles->outer_left_wall = "../tiles/walls/outer/outer_left_wall.xpm";
 	tiles->outer_right_wall = "../tiles/walls/outer/outer_right_wall.xpm";
 	tiles->outer_upper_wall = "../tiles/walls/outer/outer_upper_wall.xpm";
-	//tiles->center = "../tiles/center.xpm";
+	tiles->center = "../tiles/center.xpm";
 	//tiles->enemy = "../tiles/enemy.xpm";
-	//tiles->pellet = "../tiles/pellet.xpm";
+	tiles->pellet = "../tiles/pellet.xpm";
+	tiles->box = "../tiles/box.xpm";
+	tiles->coin = "../tiles/coin.xpm";
 }
