@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:38:55 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 16:45:21 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:11:24 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,5 @@ void	render_map(t_map *map, t_tiles *tiles, t_win *window)
 		y += 32;
 	}
 }
+
+//need to add fuctions that convert from mlx to image??
