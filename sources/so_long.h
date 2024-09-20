@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/20 10:13:02 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:23:26 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_window
 
 typedef struct s_tiles
 {
+	int		tile_size;
 	char	*inner_bottom_left_corner;
 	char	*inner_bottom_right_corner;
 	char	*inner_upper_left_corner;
@@ -98,11 +99,19 @@ typedef struct s_pellet
 	int	pos_y;
 }	t_pellet;
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 void	init_tiles(t_tiles *tiles);
 void	print_error(char *error, t_map *map);
 void	init_map(t_map *map, const char *file);
 void	render_map(t_map *map, t_tiles *tiles, t_win *window);
-void	init_win(t_win *window, const char *file, void *mlx, void *mlx_win);
+void	init_win(t_win *window, const char *file);
 
 int		count_lines(const char *file);
 int		count_columns(const char *file);

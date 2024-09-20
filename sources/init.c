@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 16:13:25 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:28:24 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,26 @@
 void	init_map(t_map *map, const char *file)
 {
 	map->matrix = NULL;
-	map->width = count_columns(file) * 32;
-	map->height = count_lines(file) * 32;
 	map->player_x = 0;
 	map->player_y = 0;
 	map->is_map_valid = true;
 	map->is_map_exitable = true;
 }
 
-void	init_win(t_win *window, const char *file, void *mlx, void *mlx_win)
+void	init_win(t_win *window, const char *file)
 {
-	window->mlx = NULL;
-	window->win = NULL;
+	window->mlx = mlx_init();
 	window->width = count_columns(file) * 32;
 	window->height = count_lines(file) * 32;
 	window->title = "so_long";
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, window->width, window->height, window->title);
-	mlx_loop(mlx);
+	window->win = mlx_new_window(window->mlx, window->width, window->height, window->title);
+	window->time_minutes = 0; // for now
+	window->time_seconds = 0; // for now
 }
 
 void	init_tiles(t_tiles *tiles)
 {
+	tiles->tile_size = 32;
 	tiles->inner_bottom_left_corner = "../tiles/corners/inner/inner_bottom_left_corner.xpm";
 	tiles->inner_bottom_right_corner = "../tiles/corners/inner/inner_bottom_right_corner.xpm";
 	tiles->inner_upper_left_corner = "../tiles/corners/inner/inner_upper_left_corner.xpm";
