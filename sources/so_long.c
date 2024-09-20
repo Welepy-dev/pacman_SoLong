@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/19 16:42:25 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:02:01 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int	main(int argc, char **argv)
 		mlx_loop(window.mlx);
 	}
 	else
-		print_error("Invalid number of arguments", NULL);
+		print_error("Invalid number arguments", NULL);
 	return (0);
 }
