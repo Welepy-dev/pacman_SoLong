@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/20 11:28:24 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:47:18 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	init_tiles(t_tiles *tiles)
 	tiles->inner_bottom_right_corner = "../tiles/corners/inner/inner_bottom_right_corner.xpm";
 	tiles->inner_upper_left_corner = "../tiles/corners/inner/inner_upper_left_corner.xpm";
 	tiles->inner_upper_right_corner = "../tiles/corners/inner/inner_upper_right_corner.xpm";
+	tiles->outer_upper_wall = "./tiles/outer_upper_wall.xpm";
 	tiles->outer_bottom_left_corner = "../tiles/corners/outer/outer_bottom_left_corner.xpm";
 	tiles->outer_bottom_right_corner = "../tiles/corners/outer/outer_bottom_right_corner.xpm";
 	tiles->outer_upper_left_corner = "../tiles/corners/outer/outer_upper_left_corner.xpm";
@@ -55,9 +56,9 @@ void	init_tiles(t_tiles *tiles)
 	tiles->outer_left_wall = "../tiles/walls/outer/outer_left_wall.xpm";
 	tiles->outer_right_wall = "../tiles/walls/outer/outer_right_wall.xpm";
 	tiles->outer_upper_wall = "../tiles/walls/outer/outer_upper_wall.xpm";
-	tiles->center = "../tiles/center.xpm";
+	tiles->center = "./tiles/center.xpm";
 	//tiles->enemy = "../tiles/enemy.xpm";
-	tiles->pellet = "../tiles/pellet.xpm";
-	tiles->box = "../tiles/box.xpm";
-	tiles->coin = "../tiles/coin.xpm";
+	tiles->pellet = "./tiles/power.xpm";
+	tiles->box = "./tiles/box.xpm";
+	tiles->coin = "./tiles/coin.xpm";
 }

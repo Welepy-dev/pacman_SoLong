@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/20 11:23:26 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:41:08 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,21 @@ typedef struct s_map
 	char	**matrix;
 	bool	is_map_valid;
 	bool	is_map_exitable;
-	int		width;
-	int		height;
 	int		player_x;
 	int		player_y;
 }	t_map;
+
+typedef struct s_images
+{
+	void	*box;
+	void	*center;
+	void	*enemy;
+	void	*pellet;
+	void	*coin;
+	void	*player;
+	void	*outer_upper_wall;
+	void	*wall;
+}	t_images;
 
 typedef struct s_window
 {
@@ -99,18 +109,10 @@ typedef struct s_pellet
 	int	pos_y;
 }	t_pellet;
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
 void	init_tiles(t_tiles *tiles);
 void	print_error(char *error, t_map *map);
 void	init_map(t_map *map, const char *file);
-void	render_map(t_map *map, t_tiles *tiles, t_win *window);
+void	render_map(t_map *map, t_tiles *tiles, t_win *window, t_images *img);
 void	init_win(t_win *window, const char *file);
 
 int		count_lines(const char *file);
