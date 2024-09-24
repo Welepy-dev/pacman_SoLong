@@ -24,7 +24,7 @@ void	init_map(t_map *map, const char *file)
 void	init_win(t_win *window, const char *file)
 {
 	window->mlx = mlx_init();
-	window->width = count_columns(file) * 32;
+	window->width = count_columns(file) * 31;
 	window->height = count_lines(file) * 32;
 	window->title = "so_long";
 	window->win = mlx_new_window(window->mlx, window->width, window->height, window->title);
@@ -35,30 +35,17 @@ void	init_win(t_win *window, const char *file)
 void	init_tiles(t_tiles *tiles)
 {
 	tiles->tile_size = 32;
-	tiles->inner_bottom_left_corner = "../tiles/corners/inner/inner_bottom_left_corner.xpm";
-	tiles->inner_bottom_right_corner = "../tiles/corners/inner/inner_bottom_right_corner.xpm";
-	tiles->inner_upper_left_corner = "../tiles/corners/inner/inner_upper_left_corner.xpm";
-	tiles->inner_upper_right_corner = "../tiles/corners/inner/inner_upper_right_corner.xpm";
-	tiles->outer_upper_wall = "./tiles/outer_upper_wall.xpm";
-	tiles->outer_bottom_left_corner = "../tiles/corners/outer/outer_bottom_left_corner.xpm";
-	tiles->outer_bottom_right_corner = "../tiles/corners/outer/outer_bottom_right_corner.xpm";
-	tiles->outer_upper_left_corner = "../tiles/corners/outer/outer_upper_left_corner.xpm";
-	tiles->outer_upper_right_corner = "../tiles/corners/outer/outer_upper_right_corner.xpm";
-	tiles->vex_outer_bottom_left_corner = "../tiles/corners/vex/vex_outer_bottom_left_corner.xpm";
-	tiles->vex_outer_bottom_right_corner = "../tiles/corners/vex/vex_outer_bottom_right_corner.xpm";
-	tiles->vex_outer_upper_left_corner = "../tiles/corners/vex/vex_outer_upper_left_corner.xpm";
-	tiles->vex_outer_upper_right_corner = "../tiles/corners/vex/vex_outer_upper_right_corner.xpm";
-	tiles->inner_bottom_wall = "../tiles/walls/inner/inner_bottom_wall.xpm";
-	tiles->inner_left_wall = "../tiles/walls/inner/inner_left_wall.xpm";
-	tiles->inner_right_wall = "../tiles/walls/inner/inner_right_wall.xpm";
-	tiles->inner_upper_wall = "../tiles/walls/inner/inner_upper_wall.xpm";
-	tiles->outer_bottom_wall = "../tiles/walls/outer/outer_bottom_wall.xpm";
-	tiles->outer_left_wall = "../tiles/walls/outer/outer_left_wall.xpm";
-	tiles->outer_right_wall = "../tiles/walls/outer/outer_right_wall.xpm";
-	tiles->outer_upper_wall = "../tiles/walls/outer/outer_upper_wall.xpm";
 	tiles->center = "./tiles/center.xpm";
-	//tiles->enemy = "../tiles/enemy.xpm";
-	tiles->pellet = "./tiles/power.xpm";
+	tiles->ghost = "../tiles/ghost.xpm";
 	tiles->box = "./tiles/box.xpm";
 	tiles->coin = "./tiles/coin.xpm";
+	tiles->player = "./tiles/player.xpm";
+	tiles->outer_upper_wall = "./tiles/outer_upper_wall.xpm";
+	tiles->outer_bottom_wall = "./tiles/outer_bottom_wall.xpm";
+	tiles->outer_left_wall = "./tiles/outer_left_wall.xpm";
+	tiles->outer_right_wall = "./tiles/outer_right_wall.xpm";
+	tiles->outer_upper_left_corner = "./tiles/outer_upper_left_corner.xpm";
+	tiles->outer_upper_right_corner = "./tiles/outer_upper_right_corner.xpm";
+	tiles->outer_bottom_left_corner = "./tiles/outer_bottom_left_corner.xpm";
+	tiles->outer_bottom_right_corner = "./tiles/outer_bottom_right_corner.xpm";
 }

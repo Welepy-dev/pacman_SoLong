@@ -18,6 +18,11 @@
 # include "./libft/libft.h"
 # include "../mlx_linux/mlx.h"
 
+# define UP 119
+# define DOWN 115
+# define LEFT 97
+# define RIGHT 100
+
 typedef struct s_map
 {
 	char	**matrix;
@@ -27,16 +32,25 @@ typedef struct s_map
 	int		player_y;
 }	t_map;
 
+
+
 typedef struct s_images
 {
 	void	*box;
 	void	*center;
-	void	*enemy;
-	void	*pellet;
+	void	*ghost;
 	void	*coin;
 	void	*player;
+	void	*exit;
 	void	*outer_upper_wall;
-	void	*wall;
+	void	*outer_bottom_wall;
+	void	*outer_left_wall;
+	void	*outer_right_wall;
+	void	*outer_upper_left_corner;
+	void	*outer_upper_right_corner;
+	void	*outer_bottom_left_corner;
+	void	*outer_bottom_right_corner;
+	void	*inner_
 }	t_images;
 
 typedef struct s_window
@@ -53,34 +67,30 @@ typedef struct s_window
 typedef struct s_tiles
 {
 	int		tile_size;
-	char	*inner_bottom_left_corner;
-	char	*inner_bottom_right_corner;
-	char	*inner_upper_left_corner;
-	char	*inner_upper_right_corner;
-	char	*outer_bottom_left_corner;
-	char	*outer_bottom_right_corner;
-	char	*outer_upper_left_corner;
-	char	*outer_upper_right_corner;
-	char	*vex_outer_bottom_left_corner;
-	char	*vex_outer_bottom_right_corner;
-	char	*vex_outer_upper_left_corner;
-	char	*vex_outer_upper_right_corner;
-	char	*inner_bottom_wall;
-	char	*inner_left_wall;
-	char	*inner_right_wall;
-	char	*inner_upper_wall;
-	char	*outer_bottom_wall;
-	char	*outer_left_wall;
-	char	*outer_right_wall;
-	char	*outer_upper_wall;
 	char	*center;
 	char	*exit;
 	char	*player;
-	char	*enemy;
+	char	*ghost;
 	char	*coin;
-	char	*pellet;
 	char	*box;
+	char	*outer_upper_wall;
+	char	*outer_bottom_wall;
+	char	*outer_left_wall;
+	char	*outer_right_wall;
+	char	*outer_upper_left_corner;
+	char	*outer_upper_right_corner;
+	char	*outer_bottom_left_corner;
+	char	*outer_bottom_right_corner;
 }	t_tiles;
+
+typedef struct so_long
+{
+	t_map		*map;
+	t_tiles		*tiles;
+	t_win		*window;
+	t_images	*img;
+}	t_so_long;
+
 
 typedef struct player
 {
@@ -91,11 +101,11 @@ typedef struct player
 	int		pos_y;
 }	t_player;
 
-typedef struct s_enemy
+typedef struct s_ghost
 {
 	int	pos_x;
 	int	pos_y;
-}	t_enemy;
+}	t_ghost;
 
 typedef struct s_coin
 {

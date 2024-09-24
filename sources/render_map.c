@@ -6,11 +6,29 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:38:55 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/20 16:50:01 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/23 20:38:32 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	init_images(t_images *img, t_win *window, t_tiles *tiles)
+{
+	int height;
+	int width;
+	img->box = mlx_xpm_file_to_image(window->mlx, tiles->box, &height, &width);
+	img->center = mlx_xpm_file_to_image(window->mlx, tiles->center, &height, &width);
+	img->coin = mlx_xpm_file_to_image(window->mlx, tiles->coin, &height, &width);
+	img->player = mlx_xpm_file_to_image(window->mlx, tiles->player, &height, &width);
+	img->outer_upper_wall = mlx_xpm_file_to_image(window->mlx, tiles->outer_upper_wall, &height, &width);
+	img->outer_bottom_wall = mlx_xpm_file_to_image(window->mlx, tiles->outer_bottom_wall, &height, &width);
+	img->outer_left_wall = mlx_xpm_file_to_image(window->mlx, tiles->outer_left_wall, &height, &width);
+	img->outer_right_wall = mlx_xpm_file_to_image(window->mlx, tiles->outer_right_wall, &height, &width);
+	img->outer_upper_left_corner = mlx_xpm_file_to_image(window->mlx, tiles->outer_upper_left_corner, &height, &width);
+	img->outer_upper_right_corner = mlx_xpm_file_to_image(window->mlx, tiles->outer_upper_right_corner, &height, &width);
+	img->outer_bottom_left_corner = mlx_xpm_file_to_image(window->mlx, tiles->outer_bottom_left_corner, &height, &width);
+	img->outer_bottom_right_corner = mlx_xpm_file_to_image(window->mlx, tiles->outer_bottom_right_corner, &height, &width);
+}
 
 void	render_map(t_map *map, t_tiles *tiles, t_win *window, t_images *img)
 {
@@ -19,33 +37,45 @@ void	render_map(t_map *map, t_tiles *tiles, t_win *window, t_images *img)
 	int height;
 	int width;
 	y = 0;
-	img->box = mlx_xpm_file_to_image(window->mlx, tiles->box, &height, &width);
-	img->center = mlx_xpm_file_to_image(window->mlx, tiles->center, &height, &width);
-	img->coin = mlx_xpm_file_to_image(window->mlx, tiles->coin, &height, &width);
-	img->pellet = mlx_xpm_file_to_image(window->mlx, tiles->pellet, &height, &width);
-	img->outer_upper_wall = mlx_xpm_file_to_image(window->mlx, tiles->outer_upper_wall, &height, &width);
-	
-	ft_printf("height: %d\n", window->height / 32);
-	ft_printf("width: %d\n", window->width / 32);
+	init_images(img, window, tiles);
 	while (y < window->height / 32)
 	{
-		ft_printf("1\n");
 		x = 0;
 		while (x < window->width / 32)
 		{
-			/*if (map->matrix[0][x] == '1')
-			{
-				mlx_put_image_to_window(window->mlx, window->win, img->outer_upper_wall, x * 32, y * 32);
-				//ft_printf("2\n");
-			}*/
 			if (map->matrix[y][x] == '1')
-				mlx_put_image_to_window(window->mlx, window->win, img->box, x * 32, y * 32);
+			{
+				if ((map->matrix[y][x]) && x == 0 && y == 0)
+					mlx_put_image_to_window(window->mlx, window->win, img->outer_upper_left_corner, x * 32, y * 32);
+				else if ((map->matrix[y][x]) && x == window->width / 32 - 1 && y == 0)
+					mlx_put_image_to_window(window->mlx, window->win, img->outer_upper_right_corner, x * 32, y * 32);
+				else if ((map->matrix[y][x]) && x == 0 && y == window->height / 31 - 1)
+					mlx_put_image_to_window(window->mlx, window->win, img->outer_bottom_left_corner, x * 32, y * 32);
+				else if ((map->matrix[y][x]) && x == window->width / 32 - 1 && y == window->height / 32 - 1)
+				 	mlx_put_image_to_window(window->mlx, window->win, img->outer_bottom_right_corner, x * 32, y * 32);
+				else if ((map->matrix[y][x]) && y == 0)
+					mlx_put_image_to_window(window->mlx, window->win, img->outer_upper_wall, x * 32, y * 32);
+				else if ((map->matrix[y][x]) && y == window->height / 32 - 1)
+					mlx_put_image_to_window(window->mlx, window->win, img->outer_bottom_wall, x * 32, y * 32);
+				else if ((map->matrix[y][x]) && x == 0)
+					mlx_put_image_to_window(window->mlx, window->win, img->outer_left_wall, x * 32, y * 32);
+				else if ((map->matrix[y][x]) && x == window->width / 32 - 1)
+					mlx_put_image_to_window(window->mlx, window->win, img->outer_right_wall, x * 32, y * 32);
+				else
+				{
+					mlx_put_image_to_window(window->mlx, window->win, img->box, x * 32, y * 32);
+				}
+			}
 			else if (map->matrix[y][x] == '0')
 				mlx_put_image_to_window(window->mlx, window->win, img->center, x * 32, y * 32);
 			else if (map->matrix[y][x] == 'C')
 				mlx_put_image_to_window(window->mlx, window->win, img->coin, x * 32, y * 32);
-			else if (map->matrix[y][x] == '9')
-				mlx_put_image_to_window(window->mlx, window->win, img->pellet, x * 32, y * 32);
+			else if (map->matrix[y][x] == 'P')
+			{
+				mlx_put_image_to_window(window->mlx, window->win, img->player, x * 32 , y * 32);
+				map->player_x = x;
+				map->player_y = y;
+			}
 			x++;
 		}
 		y++;

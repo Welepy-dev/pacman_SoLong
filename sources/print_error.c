@@ -16,6 +16,6 @@ void	print_error(char *error, t_map *map)
 {
 	if (error)
 		ft_printf("Error: %s\n", error);
-	free (map->matrix);
+//	free (map->matrix);
 	exit(0);
 }
