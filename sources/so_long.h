@@ -50,7 +50,8 @@ typedef struct s_images
 	void	*outer_upper_right_corner;
 	void	*outer_bottom_left_corner;
 	void	*outer_bottom_right_corner;
-	void	*inner_
+	void	*inner_horizontal_wall;
+	void	*inner_vertical_wall;
 }	t_images;
 
 typedef struct s_window
@@ -81,6 +82,8 @@ typedef struct s_tiles
 	char	*outer_upper_right_corner;
 	char	*outer_bottom_left_corner;
 	char	*outer_bottom_right_corner;
+	char	*inner_horizontal_wall;
+	char	*inner_vertical_wall;
 }	t_tiles;
 
 typedef struct so_long

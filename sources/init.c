@@ -48,4 +48,6 @@ void	init_tiles(t_tiles *tiles)
 	tiles->outer_upper_right_corner = "./tiles/outer_upper_right_corner.xpm";
 	tiles->outer_bottom_left_corner = "./tiles/outer_bottom_left_corner.xpm";
 	tiles->outer_bottom_right_corner = "./tiles/outer_bottom_right_corner.xpm";
+	tiles->inner_horizontal_wall = "./tiles/inner_horizontal_wall.xpm";
+	tiles->inner_vertical_wall = "./tiles/inner_vertical_wall.xpm";
 }
