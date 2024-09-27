@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 21:36:53 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/27 21:46:50 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	counter(t_game *game, char object_id)
 		}
 		y++;
 	}
-	return(counter);
+	return (counter);
 }
 
 void	parse(const char *file, t_game *game)
