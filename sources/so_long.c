@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/20 16:02:42 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:26:57 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,43 @@ int	key_hook(int keycode, t_so_long *so_long)
 {
 	int	x;
 	int	y;
-	static int i = 0;
+	static int i = 1;
 	if (keycode == UP)
 	{
-		if (so_long->map->matrix[so_long->map->player_y - 1][so_long->map->player_x] != '1')
+		if ((so_long->map->matrix[so_long->map->player_y - 1][so_long->map->player_x] != '1') && (so_long->map->matrix[so_long->map->player_y - 1][so_long->map->player_x] != 'E'))
 		{ 
 			so_long->map->matrix[so_long->map->player_y][so_long->map->player_x] = '0';
 			so_long->map->matrix[so_long->map->player_y - 1][so_long->map->player_x] = 'P';
+			ft_printf("Number of steps: %d\n", i++);
 		}
 	}
 	else if (keycode == DOWN)
 	{
-		if (so_long->map->matrix[so_long->map->player_y + 1][so_long->map->player_x] != '1')
+		if ((so_long->map->matrix[so_long->map->player_y + 1][so_long->map->player_x] != '1') && (so_long->map->matrix[so_long->map->player_y + 1][so_long->map->player_x] != 'E'))
 		{
 			so_long->map->matrix[so_long->map->player_y][so_long->map->player_x] = '0';
 			so_long->map->matrix[so_long->map->player_y + 1][so_long->map->player_x] = 'P';
+			ft_printf("Number of steps: %d\n", i++);
 		}
 	}
 	else if (keycode == LEFT)
 	{
-		if (so_long->map->matrix[so_long->map->player_y][so_long->map->player_x - 1] != '1')
+		if ((so_long->map->matrix[so_long->map->player_y][so_long->map->player_x - 1] != '1') && (so_long->map->matrix[so_long->map->player_y][so_long->map->player_x - 1] != 'E'))
 		{
 			so_long->map->matrix[so_long->map->player_y][so_long->map->player_x] = '0';
 			so_long->map->matrix[so_long->map->player_y][so_long->map->player_x - 1] = 'P';
+			ft_printf("Number of steps: %d\n", i++);
 		}
 	}
 	else if (keycode == RIGHT)
 	{
-		if (so_long->map->matrix[so_long->map->player_y][so_long->map->player_x + 1] != '1')
+		if ((so_long->map->matrix[so_long->map->player_y][so_long->map->player_x + 1] != '1') && (so_long->map->matrix[so_long->map->player_y][so_long->map->player_x + 1] != 'E'))
 		{
 			so_long->map->matrix[so_long->map->player_y][so_long->map->player_x] = '0';
 			so_long->map->matrix[so_long->map->player_y][so_long->map->player_x + 1] = 'P';
+			ft_printf("Number of steps: %d\n", i++);
 		}
 	}
-	ft_printf("Number of steps: %d\n", i++);
 	render_map(so_long->map, so_long->tiles, so_long->window, so_long->img);
 	return (0);
 }
