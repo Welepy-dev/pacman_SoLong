@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 14:56:55 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:59:44 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ typedef struct s_map
 	char	**matrix;
 	bool	is_map_valid;
 	bool	is_map_exitable;
-	int		player_x; //maybe not needed
-	int		player_y; //maybe not needed
+	int		pac_x;
+	int		pac_y;
+	int		pac_steps;
+	int		coin_count;
 }	t_map;
 
 typedef struct s_images
@@ -37,7 +39,7 @@ typedef struct s_images
 	void	*box;
 	void	*center;
 	void	*coin;
-	void	*player;
+	void	*pac;
 	void	*exit_open;
 	void	*exit_closed;
 }	t_images;
@@ -56,46 +58,29 @@ typedef struct s_tiles
 	int		tile_size;
 	char	*center;
 	char	*exit_closed;
-	char	*player;
+	char	*pac;
 	char	*coin;
 	char	*box;
 	char	*exit_open;
 }	t_tiles;
 
-typedef struct so_long
+typedef struct s_game
 {
 	t_map		*map;
 	t_tiles		*tiles;
 	t_win		*window;
 	t_images	*img;
-}	t_so_long;
+}	t_game;
 
-
-typedef struct player
-{
-	int		x;
-	int		y;
-	int		moves;
-	int		pos_x;
-	int		pos_y;
-}	t_player;		// maybe not needed
-
-
-typedef struct s_coin
-{
-	int	pos_x;
-	int	pos_y;
-}	t_coin;			// maybe not needed
-
-void	init_tiles(t_tiles *tiles);
-void	print_error(char *error, t_map *map);
-void	init_map(t_map *map, const char *file);
-void	init_win(t_win *window, const char *file);
-void	init_images(t_images *img, t_win *window, t_tiles *tiles);
-void	render_map(t_map *map, t_tiles *tiles, t_win *window, t_images *img);
+void	init_tiles(t_game *game);
+void	print_error(char *error, t_game *game);
+void	init_map(t_game *game, const char *file);
+void	init_win(t_game *game, const char *file);
+void	init_images(t_game *game);
+void	render_map(t_game *game);
 
 int		count_lines(const char *file);
 int		count_columns(const char *file);
-int		parse_map(const char *file, t_map *map);
+int		parse_map(const char *file, t_game *game);
 
 #endif

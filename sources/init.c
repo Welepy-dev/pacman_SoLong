@@ -6,49 +6,51 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 15:26:28 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:01:09 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(t_map *map, const char *file)
+void	init_map(t_game *game, const char *file)
 {
-	map->matrix = NULL;
-	map->player_x = 0; // maybe not needed
-	map->player_y = 0; // maybe not needed
-	map->is_map_valid = true;
-	map->is_map_exitable = false;
+	game->map->matrix = NULL;
+	game->map->pac_x = 0; // maybe not needed
+	game->map->pac_y = 0; // maybe not needed
+	game->map->is_map_valid = true;
+	game->map->is_map_exitable = false;
+	game->map->coin_count = 0;
+	game->map->pac_steps = 0;
 }
 
-void	init_win(t_win *window, const char *file)
+void	init_win(t_game *game, const char *file)
 {
-	window->mlx = mlx_init();
-	window->width = count_columns(file) * 31;
-	window->height = count_lines(file) * 32;
-	window->title = "so_long";
-	window->win = mlx_new_window(window->mlx, window->width, window->height, window->title);
+	game->window->mlx = mlx_init();
+	game->window->width = count_columns(file) * 31;
+	game->window->height = count_lines(file) * 32;
+	game->window->title = "so_long";
+	game->window->win = mlx_new_window(game->window->mlx, game->window->width, game->window->height, game->window->title);
 }
 
-void	init_tiles(t_tiles *tiles)
+void	init_tiles(t_game *game)
 {
-	tiles->tile_size = 32;
-	tiles->center = "./tiles/center.xpm";
-	tiles->box = "./tiles/box.xpm";
-	tiles->coin = "./tiles/coin.xpm";
-	tiles->player = "./tiles/player.xpm";
-	tiles->exit_closed = "./tiles/exit_closed.xpm";
-	tiles->exit_open = "./tiles/exit_open.xpm";
+	game->tiles->tile_size = 32;
+	game->tiles->center = "./tiles/center.xpm";
+	game->tiles->box = "./tiles/box.xpm";
+	game->tiles->coin = "./tiles/coin.xpm";
+	game->tiles->pac = "./tiles/pac.xpm";
+	game->tiles->exit_closed = "./tiles/exit_closed.xpm";
+	game->tiles->exit_open = "./tiles/exit_open.xpm";
 }
 
-void	init_images(t_images *img, t_win *window, t_tiles *tiles)
+void	init_images(t_game *game)
 {
 	int height;
 	int width;
-	img->box = mlx_xpm_file_to_image(window->mlx, tiles->box, &height, &width);
-	img->center = mlx_xpm_file_to_image(window->mlx, tiles->center, &height, &width);
-	img->coin = mlx_xpm_file_to_image(window->mlx, tiles->coin, &height, &width);
-	img->player = mlx_xpm_file_to_image(window->mlx, tiles->player, &height, &width);
-	img->exit_closed = mlx_xpm_file_to_image(window->mlx, tiles->exit_closed, &height, &width);
-	img->exit_open = mlx_xpm_file_to_image(window->mlx, tiles->exit_open, &height, &width);
+	game->img->box = mlx_xpm_file_to_image(game->window->mlx, game->tiles->box, &height, &width);
+	game->img->center = mlx_xpm_file_to_image(game->window->mlx, game->tiles->center, &height, &width);
+	game->img->coin = mlx_xpm_file_to_image(game->window->mlx, game->tiles->coin, &height, &width);
+	game->img->pac = mlx_xpm_file_to_image(game->window->mlx, game->tiles->pac, &height, &width);
+	game->img->exit_closed = mlx_xpm_file_to_image(game->window->mlx, game->tiles->exit_closed, &height, &width);
+	game->img->exit_open = mlx_xpm_file_to_image(game->window->mlx, game->tiles->exit_open, &height, &width);
 }
