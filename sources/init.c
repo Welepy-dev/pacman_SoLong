@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 20:09:46 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/27 21:36:46 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	init_map(t_game *game, const char *file)
 	game->map->pac_y = 0;
 	game->map->matrix = NULL;
 	game->map->pac_steps = 1;
-	game->map->coin_count = 0;
 	game->map->is_map_valid = true;
 	game->map->is_map_exitable = false;
 }

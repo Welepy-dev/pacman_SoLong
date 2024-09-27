@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 20:21:50 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/27 21:36:06 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_map
 	int		pac_y;
 	int		pac_steps;
 	int		coin_count;
+	int		player_count;
+	int		exit_count;
 }	t_map;
 
 typedef struct s_images
@@ -76,18 +78,22 @@ typedef struct s_game
 	t_images	*img;
 }	t_game;
 
+void	validation(t_game *game);
 void	render_map(t_game *game);
 void	init_tiles(t_game *game);
 void	init_images(t_game *game);
+void	is_exitable(t_game *game);
 void	move_to(t_game *game, int x, int y);
+void	parse(const char *file, t_game *game);
 void	print_error(char *error, t_game *game);
 void	init_map(t_game *game, const char *file);
 void	init_win(t_game *game, const char *file);
+void	parse_map(const char *file, t_game *game);
 void	put_tile(t_game *game, int x, int y, char id);
 
 int		count_lines(const char *file);
 int		count_columns(const char *file);
 int		key_hook(int keycode, t_game *game);
-int		parse_map(const char *file, t_game *game);
+int		counter(t_game *game, char object_id);
 
 #endif
