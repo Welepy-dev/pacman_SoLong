@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/25 20:35:30 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:21:50 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,106 +22,72 @@
 # define DOWN 115
 # define LEFT 97
 # define RIGHT 100
+# define UP_ARROW 65362
+# define DOWN_ARROW 65364
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
 
 typedef struct s_map
 {
 	char	**matrix;
-	char	player_move_dir;
 	bool	is_map_valid;
 	bool	is_map_exitable;
-	bool	is_player_moving;
-	int		player_x;
-	int		player_y;
-	int		player_moves;
-	int		player_pos_x;
-	int		player_pos_y;
+	int		pac_x;
+	int		pac_y;
+	int		pac_steps;
+	int		coin_count;
 }	t_map;
 
-typedef struct s_tiles
+typedef struct s_images
 {
-	char	*center;
-	char	*exit;
-	char	*player;
-	char	*ghost;
-	char	*coin;
-	char	*box;
-	char	*outer_upper_wall;
-	char	*outer_bottom_wall;
-	char	*outer_left_wall;
-	char	*outer_right_wall;
-	char	*outer_upper_left_corner;
-	char	*outer_upper_right_corner;
-	char	*outer_bottom_left_corner;
-	char	*outer_bottom_right_corner;
-	char	*inner_horizontal_wall;
-	char	*inner_vertical_wall;
-	char	*inner_upper_left_corner;
-	char	*inner_upper_right_corner;
-	char	*inner_bottom_left_corner;
-	char	*inner_bottom_right_corner;
-	int		tile_size;
-}	t_tiles;
+	void	*box;
+	void	*center;
+	void	*coin;
+	void	*pac;
+	void	*exit_open;
+	void	*exit_closed;
+}	t_images;
 
-typedef struct s_win
+typedef struct s_window
 {
 	char	*title;
 	void	*mlx;
 	void	*win;
 	int		width;
 	int		height;
-	int		time_seconds;
-	int		time_minutes;
 }	t_win;
 
-typedef struct s_images
+typedef struct s_tiles
 {
-	void	*box;
-	void	*center;
-	void	*ghost;
-	void	*coin;
-	void	*player;
-	void	*exit;
-	void	*outer_upper_wall;
-	void	*outer_bottom_wall;
-	void	*outer_left_wall;
-	void	*outer_right_wall;
-	void	*outer_upper_left_corner;
-	void	*outer_upper_right_corner;
-	void	*outer_bottom_left_corner;
-	void	*outer_bottom_right_corner;
-	void	*inner_horizontal_wall;
-	void	*inner_vertical_wall;
-	void	*inner_upper_left_corner;
-	void	*inner_upper_right_corner;
-	void	*inner_bottom_left_corner;
-	void	*inner_bottom_right_corner;
-}	t_images;
+	int		tile_size;
+	char	*center;
+	char	*exit_closed;
+	char	*pac;
+	char	*coin;
+	char	*box;
+	char	*exit_open;
+}	t_tiles;
 
-typedef struct s_so_long
+typedef struct s_game
 {
 	t_map		*map;
 	t_tiles		*tiles;
 	t_win		*window;
 	t_images	*img;
-    
-	char move_dir;
-	int	player_x_pos;
-	int	player_y_pos;
-	int	is_moving;
-}	t_so_long;
+}	t_game;
 
-void	find_player(t_map *map);
-void	init_tiles(t_tiles *tiles);
-void	print_error(char *error, t_map *map);
-void	init_map(t_map *map, const char *file);
-void	init_win(t_win *window, const char *file);
-void	init_images(t_images *img, t_win *window, t_tiles *tiles);
-void 	render_map(t_map *map, t_tiles *tiles, t_win *window, t_images *img, t_so_long *so_long);
+void	render_map(t_game *game);
+void	init_tiles(t_game *game);
+void	init_images(t_game *game);
+void	move_to(t_game *game, int x, int y);
+void	print_error(char *error, t_game *game);
+void	init_map(t_game *game, const char *file);
+void	init_win(t_game *game, const char *file);
+void	put_tile(t_game *game, int x, int y, char id);
 
 int		count_lines(const char *file);
 int		count_columns(const char *file);
-int		update_player(t_so_long *so_long);
-int		parse_map(const char *file, t_map *map);
-int		key_hook(int keycode, t_so_long *so_long);
+int		key_hook(int keycode, t_game *game);
+int		parse_map(const char *file, t_game *game);
 
 #endif
