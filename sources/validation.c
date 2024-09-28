@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 20:46:50 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 21:44:19 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:47:16 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,6 @@ void	validation(t_game *game)
 	}
 }
 
-/*void	find_objects(t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (game->map->matrix[y])
-	{
-		while (game->map->matrix[y][x])
-		{
-			if (game->map->matrix[y][x] == NULL)
-				print_error("Error: Empty map", game);
-			if (game->map->matrix[y][x] )
-			
-		}
-		
-	}
-	
-}*/
-
 void	check_number_of_objects(t_game *game)
 {
 	if (game->map->coin_count == 0)
@@ -75,6 +54,68 @@ void	check_number_of_objects(t_game *game)
 		game->map->is_map_valid = false;
 }
 
-//verify line count and compare with the rest of others
-//verify the length of lines compare it with length of chars and vice versa
-//need to verify if is rectangle and if is a closed rectangle
+
+void	check_rectangle(t_game *game)
+{
+	int	width;
+	int	height;
+
+	height = 0;
+	width = ft_strlen(game->map->matrix[0]);
+	while (game->map->matrix[height])
+		height++;
+	if (height == width)
+		print_error("Error: Map is not a rectangle", game);
+}
+
+void	check_lines(t_game *game)
+{
+	int	i;
+	int	len;
+	int	next_len;
+
+	i = 0;
+	len = ft_strlen(game->map->matrix[0]);
+	while (game->map->matrix[i])
+	{
+		if (ft_strlen(game->map->matrix[i]) != len)
+			game->map->is_map_valid = false;
+		i++;
+	}
+}
+
+void	check_borders(t_game *game)
+{
+	vertical_check(game, 0, 0);
+	horizontal_check(game, 0, 0);
+	vertical_check(game, 0, game->window->width);
+	horizontal_check(game, game->window->height, 0);
+}
+
+void	horizontal_check(t_game *game, int y, int x)
+{
+	while (game->map->matrix[y][x])
+	{
+		if (game->map->matrix[y][x] != '1')
+			game->map->is_map_valid = false;
+		x++;
+	}
+}
+
+void	vertical_check(t_game *game, int y, int x)
+{
+	while (game->map->matrix[y][x])
+	{
+		if (game->map->matrix[y][x] != '1')
+			game->map->is_map_valid = false;
+		y++;
+	}
+}
+
+void	validate(int ac, char **av)
+{
+	if (ac != 2)
+		print_error("Invalid number arguments", NULL);
+	if (ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4) != 0)
+		print_error("Invalid file extension", NULL);
+}
