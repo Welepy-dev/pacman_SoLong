@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 01:34:33 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 02:21:36 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ void	init_tiles(t_game *game);
 void	init_images(t_game *game);
 void	is_exitable(t_game *game);
 void	check_lines(t_game *game);
-void	check_borders(t_game *game);
+//void	check_borders(t_game *game);
 void	check_rectangle(t_game *game);
+void	validate_args(int ac, char *av);
 void	move_to(t_game *game, int x, int y);
 void	check_number_of_objects(t_game *game);
 void	parse(const char *file, t_game *game);
@@ -95,8 +96,8 @@ void	init_map(t_game *game, const char *file);
 void	init_win(t_game *game, const char *file);
 void	parse_map(const char *file, t_game *game);
 void	validate(int ac, char **av, t_game *game);
-void	vertical_check(t_game *game, int y, int x);
-void	horizontal_check(t_game *game, int y, int x);
+//void	vertical_check(t_game *game, int y, int x);
+//void	horizontal_check(t_game *game, int y, int x);
 void	put_tile(t_game *game, int x, int y, char id);
 
 int		count_lines(const char *file);
