@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 21:46:50 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 01:40:01 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	counter(t_game *game, char object_id)
 		x = 0;
 		while (game->map->matrix[y][x])
 		{
-			if (game->map->matrix[y][x] == 'C')
+			if (game->map->matrix[y][x] == object_id)
 				counter++;
 			x++;
 		}

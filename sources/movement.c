@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:54:12 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 21:38:17 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:59:16 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	move_to(t_game *game, int x, int y)
 		if (game->map->matrix[y][x] == 'C')
 			game->map->coin_count--;
 		is_exitable(game);
-		ft_printf("Coin count %d\n", game->map->coin_count);
 		game->map->matrix[game->map->pac_y][game->map->pac_x] = '0';
 		game->map->matrix[y][x] = 'P';
 		//mlx_clear_window(game->window->mlx, game->window->win);
@@ -38,5 +37,11 @@ int	key_hook(int keycode, t_game *game)
 		move_to(game, game->map->pac_x - 1, game->map->pac_y);
 	else if (keycode == RIGHT || keycode == RIGHT_ARROW)
 		move_to(game, game->map->pac_x + 1, game->map->pac_y);
+	else if (keycode == ESC)
+	{
+		mlx_clear_window(game->window->mlx, game->window->win);
+		mlx_destroy_window(game->window->mlx, game->window->win);
+		exit(0);
+	}
 	return (0);
 }
