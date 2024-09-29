@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 11:05:18 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 19:59:55 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 typedef struct s_map
 {
 	char	**matrix;
+	char	move_dir;
 	bool	is_map_valid;
 	bool	is_map_exitable;
 	int		pac_x;
@@ -39,6 +40,9 @@ typedef struct s_map
 	int		coin_count;
 	int		player_count;
 	int		exit_count;
+	int		current_frame;
+	int		frame_count;
+	int		frame_delay;
 }	t_map;
 
 typedef struct s_images
@@ -49,6 +53,10 @@ typedef struct s_images
 	void	*pac;
 	void	*exit_open;
 	void	*exit_closed;
+	void	*pac_up[2];
+	void	*pac_down[2];
+	void	*pac_left[2];
+	void	*pac_right[2];
 }	t_images;
 
 typedef struct s_window
@@ -69,6 +77,10 @@ typedef struct s_tiles
 	char	*coin;
 	char	*box;
 	char	*exit_open;
+	char	*pac_up_path[2];
+	char	*pac_down_path[2];
+	char	*pac_left_path[2];
+	char	*pac_right_path[2];
 }	t_tiles;
 
 typedef struct s_game
@@ -85,12 +97,11 @@ void	init_tiles(t_game *game);
 void	init_images(t_game *game);
 void	is_exitable(t_game *game);
 void	check_lines(t_game *game);
-void	init(t_game *game, const char *file);
 //void	check_borders(t_game *game);
 void	destroy_images(t_game *game);
 void	check_rectangle(t_game *game);
 void	validate_args(int ac, char *av);
-void	move_to(t_game *game, int x, int y);
+void	init(t_game *game, const char *file);
 void	check_number_of_objects(t_game *game);
 void	parse(const char *file, t_game *game);
 void	init_map(t_game *game, const char *file);
@@ -100,6 +111,7 @@ void	validate(int ac, char **av, t_game *game);
 //void	vertical_check(t_game *game, int y, int x);
 //void	horizontal_check(t_game *game, int y, int x);
 void	put_tile(t_game *game, int x, int y, char id);
+void	move_to(t_game *game, int x, int y, char move_dir);
 
 int		count_lines(const char *file);
 int		count_columns(const char *file);

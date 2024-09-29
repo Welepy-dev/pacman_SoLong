@@ -6,13 +6,13 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:54:12 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 09:34:09 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 19:59:23 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_to(t_game *game, int x, int y)
+void	move_to(t_game *game, int x, int y, char move_dir)
 {
 	if ((game->map->matrix[y][x] != '1') && ((game->map->matrix[y][x] != 'E') \
 	|| game->map->is_map_exitable))
@@ -31,6 +31,7 @@ void	move_to(t_game *game, int x, int y)
 		is_exitable(game);
 		game->map->matrix[game->map->pac_y][game->map->pac_x] = '0';
 		game->map->matrix[y][x] = 'P';
+		game->map->move_dir = move_dir;
 		destroy_images(game);
 		mlx_clear_window(game->window->mlx, game->window->win);
 		render_map(game);
@@ -41,13 +42,13 @@ void	move_to(t_game *game, int x, int y)
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == UP || keycode == UP_ARROW)
-		move_to(game, game->map->pac_x, game->map->pac_y - 1);
+		move_to(game, game->map->pac_x, game->map->pac_y - 1, 'U');
 	else if (keycode == DOWN || keycode == DOWN_ARROW)
-		move_to(game, game->map->pac_x, game->map->pac_y + 1);
+		move_to(game, game->map->pac_x, game->map->pac_y + 1, 'D');
 	else if (keycode == LEFT || keycode == LEFT_ARROW)
-		move_to(game, game->map->pac_x - 1, game->map->pac_y);
+		move_to(game, game->map->pac_x - 1, game->map->pac_y, 'L');
 	else if (keycode == RIGHT || keycode == RIGHT_ARROW)
-		move_to(game, game->map->pac_x + 1, game->map->pac_y);
+		move_to(game, game->map->pac_x + 1, game->map->pac_y, 'R');
 	else if (keycode == ESC)
 	{
 		destroy_images(game);

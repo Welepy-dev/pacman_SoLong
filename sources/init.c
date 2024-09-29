@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:34:35 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:01:12 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	init_map(t_game *game, const char *file)
 	game->map->pac_y = 0;
 	game->map->matrix = NULL;
 	game->map->pac_steps = 0;
+	game->map->move_dir = 'R';
+	game->map->frame_count = 3;
+	game->map->frame_delay = 5;
+	game->map->current_frame = 0;
 	game->map->is_map_valid = true;
 	game->map->is_map_exitable = false;
 }
@@ -41,6 +45,9 @@ void	init_tiles(t_game *game)
 	game->tiles->center = "./tiles/center.xpm";
 	game->tiles->exit_open = "./tiles/exit_open.xpm";
 	game->tiles->exit_closed = "./tiles/exit_closed.xpm";
+	game->tiles->pac_right_path[0] = "./tiles/pac_right_closed.xpm";
+	game->tiles->pac_right_path[1] = "./tiles/pac_right_half.xpm";
+	game->tiles->pac_right_path[2] = "./tiles/pac_right_open.xpm";
 }
 
 void	init_images(t_game *game)
@@ -60,6 +67,13 @@ void	init_images(t_game *game)
 	game->tiles->exit_open, &height, &width);
 	game->img->exit_closed = mlx_xpm_file_to_image(game->window->mlx, \
 	game->tiles->exit_closed, &height, &width);
+
+	game->img->pac_right[0] = mlx_xpm_file_to_image(game->window->mlx, \
+	game->tiles->pac_right_path[0], &height, &width);
+	game->img->pac_right[1] = mlx_xpm_file_to_image(game->window->mlx, \
+	game->tiles->pac_right_path[1], &height, &width);
+	game->img->pac_right[2] = mlx_xpm_file_to_image(game->window->mlx, \
+	game->tiles->pac_right_path[2], &height, &width);
 }
 
 void	init(t_game *game, const char *file)
