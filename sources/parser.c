@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 01:40:01 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 10:44:57 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_lines(const char *file)
 	lines = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		print_error("Error opening file", NULL);
+		print_error("Error opening file");
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -43,7 +43,7 @@ int	count_columns(const char *file)
 	rows = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		print_error("Error opening file", NULL);
+		print_error("Error opening file");
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -68,14 +68,13 @@ void	parse_map(const char *file, t_game *game)
 	row = 0;
 	lines = count_lines(file);
 	if (lines == -1)
-		print_error("Error parsing file", game);
-	game->map->matrix = malloc(sizeof(char *) * lines);
-	game->map->matrix[lines] = NULL;
+		print_error("Error parsing file");
+	game->map->matrix = malloc(sizeof(char *) * (lines + 1));
 	if (!game->map->matrix)
-		print_error("Error allocating memory", game);
+		print_error("Error allocating memory");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		print_error("Error opening file", game);
+		print_error("Error opening file");
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -83,6 +82,7 @@ void	parse_map(const char *file, t_game *game)
 		row++;
 		str = get_next_line(fd);
 	}
+	game->map->matrix[row] = NULL;
 	close(fd);
 }
 

@@ -6,13 +6,12 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 04:21:40 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 10:34:29 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 /*player image rotation*/
-
 
 int	main(int ac, char **av)
 {
@@ -27,12 +26,8 @@ int	main(int ac, char **av)
 	game.tiles = &tiles;
 	game.window = &window;
 	game.img = &img;
-	init_map(&game, av[1]);
-	init_tiles(&game);
-	parse(av[1], &game);
-	init_win(&game, av[1]);
-	while (game.map->is_map_valid)
-		validate(ac, av, &game);
+	init(&game, av[1]);
+	validate(ac, av, &game);
 	render_map(&game);
 	mlx_key_hook(window.win, key_hook, &game);
 	mlx_loop(window.mlx);

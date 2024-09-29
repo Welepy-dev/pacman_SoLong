@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   ft_matrix_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:17:46 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/27 20:20:42 by marcsilv         ###   ########.fr       */
+/*   Created: 2024/09/29 08:47:40 by marcsilv          #+#    #+#             */
+/*   Updated: 2024/09/29 09:11:27 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	print_error(char *error, t_game *game)
+size_t	ft_matrix_len(char **matrix)
 {
-	if (error)
-		ft_printf("Error: %s\n", error);
-	exit(0);
+	size_t	i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	return (i);
 }
