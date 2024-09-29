@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:52:22 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:52:45 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,10 @@ void	parse(const char *file, t_game *game)
 	game->map->exit_count = counter(game, 'E');
 	game->map->coin_count = counter(game, 'C');
 	game->map->player_count = counter(game, 'P');
+	if (game->map->exit_count != 1)
+		print_error("incorrect number of exits");
+	if (game->map->coin_count < 1)
+		print_error("no collectibles found");
+	if (game->map->player_count != 1)
+		print_error("incorrect number of players");
 }

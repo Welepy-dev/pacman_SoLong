@@ -6,12 +6,11 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:59:02 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:49:55 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-/*player image rotation*/
 
 int	main(int ac, char **av)
 {
@@ -34,8 +33,8 @@ int	main(int ac, char **av)
 	return (0);
 }
 
+//check the other validations that are missing
 //check parsing again
-//check each error message
 //test all errors
 //flood fill
-//check if there is at least 1 collectible
+//makefile
