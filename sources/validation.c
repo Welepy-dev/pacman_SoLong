@@ -6,16 +6,18 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 20:46:50 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:22:57 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 11:03:09 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	is_exitable(t_game *game)
+void	validate_args(int ac, char *av)
 {
-	if (game->map->coin_count == 0)
-		game->map->is_map_exitable = true;
+	if (ac != 2)
+		print_error("Invalid number of arguments");
+	if (ft_strncmp(av + ft_strlen(av) - 4, ".ber", 4) != 0)
+		print_error("Invalid file extension");
 }
 
 void	check_number_of_objects(t_game *game)
@@ -27,7 +29,7 @@ void	check_number_of_objects(t_game *game)
 	if (game->map->player_count != 1)
 		game->map->is_map_valid = false;
 	if (game->map->is_map_valid == false)
-		print_error("Error, invalid map");
+		print_error("invalid map");
 }
 
 void	check_rectangle(t_game *game)
@@ -40,7 +42,7 @@ void	check_rectangle(t_game *game)
 	while (game->map->matrix[height])
 		height++;
 	if (height == width)
-		print_error("Error: Map is not a rectangle");
+		print_error("map is not a rectangle");
 }
 
 void	check_lines(t_game *game)
@@ -66,16 +68,9 @@ void	validate(int ac, char **av, t_game *game)
 	check_rectangle(game);
 	//check_borders(game);
 	if (game->map->is_map_valid == false)
-		print_error("Error, invalid map");
+		print_error("invalid map");
 }
 
-void	validate_args(int ac, char *av)
-{
-	if (ac != 2)
-		print_error("Invalid number arguments");
-	if (ft_strncmp(av + ft_strlen(av) - 4, ".ber", 4) != 0)
-		print_error("Invalid file extension");
-}
 
 /*void	validation(t_game *game)
 {
@@ -102,10 +97,10 @@ void	validate_args(int ac, char *av)
 				ft_printf("1\n");
 				game->map->is_map_valid = false;
 				ft_printf("x: %d, y: %d\n", x, y);
-				print_error("Error, map has unknown object");
+				print_error("map has unknown object");
 			}
 			if (game->map->is_map_valid == false)
-				print_error("Error, map has unknown object");
+				print_error("map has unknown object");
 			x++;
 		}
 		x = 0;
@@ -144,7 +139,7 @@ void validation(t_game *game)
                 ft_printf("1\n");  // Debug print to track progress
                 game->map->is_map_valid = false;
                 ft_printf("Invalid character found at x: %d, y: %d: %c\n", x, y, game->map->matrix[y][x]);
-                print_error("Error, map has unknown object");
+                print_error("map has unknown object");
                 return;  // Exit function on error to prevent further issues
             }
 

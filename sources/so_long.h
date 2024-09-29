@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:34:39 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 11:05:18 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ typedef struct s_game
 }	t_game;
 
 //void	validation(t_game *game);
-void	print_error(char *error);
 void	render_map(t_game *game);
 void	init_tiles(t_game *game);
 void	init_images(t_game *game);

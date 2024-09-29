@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:02:03 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 08:48:44 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 10:55:38 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	**ft_split(char const *str, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
+void	print_error(char *error);
 void	ft_put_ptr(uintptr_t num);
 void	ft_matrix_free(char **matrix);
 void	*ft_memcpy(void *dest, const void *src, size_t n);

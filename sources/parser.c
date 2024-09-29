@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:44:57 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 10:52:22 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_lines(const char *file)
 	lines = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		print_error("Error opening file");
+		print_error("could not open file");
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -43,7 +43,7 @@ int	count_columns(const char *file)
 	rows = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		print_error("Error opening file");
+		print_error("could not open file");
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -68,13 +68,13 @@ void	parse_map(const char *file, t_game *game)
 	row = 0;
 	lines = count_lines(file);
 	if (lines == -1)
-		print_error("Error parsing file");
+		print_error("could not parse file");
 	game->map->matrix = malloc(sizeof(char *) * (lines + 1));
 	if (!game->map->matrix)
-		print_error("Error allocating memory");
+		print_error("memory allocation failure");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		print_error("Error opening file");
+		print_error("could not open file");
 	str = get_next_line(fd);
 	while (str)
 	{

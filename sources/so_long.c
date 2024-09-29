@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:34:29 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/09/29 10:59:02 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 int	main(int ac, char **av)
 {
 	t_map		map;
-	t_tiles		tiles;
-	t_win		window;
 	t_images	img;
 	t_game		game;
+	t_tiles		tiles;
+	t_win		window;
 
 	validate_args(ac, av[1]);
 	game.map = &map;
@@ -36,5 +36,6 @@ int	main(int ac, char **av)
 
 //check parsing again
 //check each error message
+//test all errors
 //flood fill
 //check if there is at least 1 collectible
