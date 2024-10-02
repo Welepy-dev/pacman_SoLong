@@ -6,13 +6,13 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 20:46:50 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/02 08:46:43 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:46:37 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	validate_args(int ac, char *av)
+void	validate_args(int ac, const char *av)
 {
 	if (ac != 2)
 		print_error("Invalid number of arguments");
@@ -20,101 +20,57 @@ void	validate_args(int ac, char *av)
 		print_error("Invalid file extension");
 }
 
-void	check_number_of_objects(t_game *game)
-{
-	if (game->map->coin_count == 0)
-		game->map->is_map_valid = false;
-	if (game->map->exit_count != 1)
-		game->map->is_map_valid = false;
-	if (game->map->player_count != 1)
-		game->map->is_map_valid = false;
-	if (game->map->is_map_valid == false)
-		print_error("invalid map");
-}
-
-void	check_rectangle(t_game *game)
-{
-	int	width;
-	int	height;
-
-	height = 0;
-	width = ft_strlen(game->map->matrix[0]);
-	while (game->map->matrix[height])
-		height++;
-	if (height == width)
-		print_error("map is not a rectangle");
-}
-
-void	check_lines(t_game *game)
-{
-	int	i;
-	int	len;
-	int	next_len;
-
-	i = 0;
-	len = ft_strlen(game->map->matrix[0]);
-	while (game->map->matrix[i])
-	{
-		if (ft_strlen(game->map->matrix[i]) != len)
-			game->map->is_map_valid = false;
-		i++;
-	}
-}
-
-void	validate(int ac, t_game *game)
+void	validate(int ac, t_game *game, const char *av)
 {	
-	//validation(game);
+	char	**map;
+	int		height;
+	int		width;
+
+	height = ft_matrix_len(game->map->matrix);
+	width = ft_strlen(game->map->matrix[0]);
+	map = copy_map(game->map->matrix);
+	if (height < 3 || width < 3 || width == height)
+		game->map->is_map_valid = false;
+	check_lines(game);
 	check_number_of_objects(game);
-	check_rectangle(game);
 	check_borders(game);
+	find_player(game);
+	flood_fill_validate(map, game);
 	if (game->map->is_map_valid == false)
-		print_error("invalid map");
-}
-
-void	check_borders(t_game *game)
-{
-	char	*line_1;
-	char	*line_2;
-	line_1 = copy_column_to_line(game->map->matrix, 0);
-	line_2 = copy_column_to_line(game->map->matrix, game->window->width / 32);
-	ft_printf("7\n");
-	if (check_line(game->map->matrix[0]) == false)
-		game->map->is_map_valid = false;
-	if (check_line(game->map->matrix[(game->window->height / 32) - 1]) == false)
-		game->map->is_map_valid = false;
-	if (check_line(line_1) == false)
-		game->map->is_map_valid = false;
-	if (check_line(line_2) == false)
-		game->map->is_map_valid = false;
-}
-
-// void	check_line(t_game *game, int y, int x)
-// {
-// 	while (game->map->matrix[y][x])
-// 	{
-// 		ft_printf("7\n");
-// 		if (game->map->matrix[y][x] != '1')
-// 			game->map->is_map_valid = false;
-// 		x++;
-// 	}
-// }
-
-bool	check_line(char *matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i + 1] != '\0')
 	{
-		if (matrix[i] != '1')
-			return (false);
-		i++;
+		ft_matrix_free(game->map->matrix);
+		print_error("Invalid map");
 	}
-	return (true);
 }
 
+void	check_chars(t_map *map)
+{
+	int	x;
+	int	y;
 
-/*void	validation(t_game *game)
+	y = 0;
+	while (map->matrix[y])
+	{
+		x = 0;
+		while (map->matrix[y][x])
+		{
+			if (map->matrix[y][x] != '1' \
+			&& map->matrix[y][x] != '0' \
+			&& map->matrix[y][x] != 'C' \
+			&& map->matrix[y][x] != 'E' \
+			&& map->matrix[y][x] != 'P')
+			{
+				map->is_map_valid = false;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+/*
+void	validation(t_game *game)
 {
 	int	x;
 	int	y;

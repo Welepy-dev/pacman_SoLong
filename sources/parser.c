@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:47:30 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/02 08:14:08 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:03:29 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	count_lines(const char *file)
 		free(str);
 		str = get_next_line(fd);
 	}
+	free(str);
 	close(fd);
 	return (lines);
 }
@@ -55,6 +56,7 @@ int	count_columns(const char *file)
 		free(str);
 		str = get_next_line(fd);
 	}
+	free(str);
 	return (rows);
 }
 
@@ -83,6 +85,7 @@ void	parse_map(const char *file, t_game *game)
 		str = get_next_line(fd);
 	}
 	game->map->matrix[row] = NULL;
+	free(str);
 	close(fd);
 }
 
@@ -111,17 +114,9 @@ int	counter(t_game *game, char object_id)
 void	parse(const char *file, t_game *game)
 {
 	parse_map(file, game);
+	game->map->matrix_len = ft_matrix_len(game->map->matrix);
+	game->map->matrix_row_len = ft_strlen(game->map->matrix[0]);
 	game->map->exit_count = counter(game, 'E');
 	game->map->coin_count = counter(game, 'C');
 	game->map->player_count = counter(game, 'P');
-	if (game->map->exit_count < 1)
-		print_error("must at least have one exit");
-	else if (game->map->exit_count > 1)
-		print_error("must have only one exit");
-	if (game->map->coin_count < 1)
-		print_error("no collectibles found");
-	if (game->map->player_count < 1)
-		print_error("must have at least one player");
-	else if (game->map->player_count > 1)
-		print_error("must have only one player");
 }

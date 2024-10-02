@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:54:55 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:55:16 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:29:38 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	print_error(char *error)
 {
 	if (error)
 		ft_printf("Error: %s.\n", error);
-	exit(0);
+	exit(1);
 }
