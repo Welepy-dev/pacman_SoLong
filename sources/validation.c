@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 20:46:50 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 11:03:09 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:46:43 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,56 @@ void	check_lines(t_game *game)
 	}
 }
 
-void	validate(int ac, char **av, t_game *game)
+void	validate(int ac, t_game *game)
 {	
 	//validation(game);
 	check_number_of_objects(game);
 	check_rectangle(game);
-	//check_borders(game);
+	check_borders(game);
 	if (game->map->is_map_valid == false)
 		print_error("invalid map");
+}
+
+void	check_borders(t_game *game)
+{
+	char	*line_1;
+	char	*line_2;
+	line_1 = copy_column_to_line(game->map->matrix, 0);
+	line_2 = copy_column_to_line(game->map->matrix, game->window->width / 32);
+	ft_printf("7\n");
+	if (check_line(game->map->matrix[0]) == false)
+		game->map->is_map_valid = false;
+	if (check_line(game->map->matrix[(game->window->height / 32) - 1]) == false)
+		game->map->is_map_valid = false;
+	if (check_line(line_1) == false)
+		game->map->is_map_valid = false;
+	if (check_line(line_2) == false)
+		game->map->is_map_valid = false;
+}
+
+// void	check_line(t_game *game, int y, int x)
+// {
+// 	while (game->map->matrix[y][x])
+// 	{
+// 		ft_printf("7\n");
+// 		if (game->map->matrix[y][x] != '1')
+// 			game->map->is_map_valid = false;
+// 		x++;
+// 	}
+// }
+
+bool	check_line(char *matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i + 1] != '\0')
+	{
+		if (matrix[i] != '1')
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 
@@ -149,32 +191,4 @@ void validation(t_game *game)
         y++;
     }
 }
-
-void	check_borders(t_game *game)
-{
-	vertical_check(game, 0, 0);
-	ft_printf("7\n");
-	horizontal_check(game, 0, 0);
-	vertical_check(game, 0, game->window->width);
-	horizontal_check(game, game->window->height, 0);
-}
-
-void	horizontal_check(t_game *game, int y, int x)
-{
-	while (game->map->matrix[y][x])
-	{
-		if (game->map->matrix[y][x] != '1')
-			game->map->is_map_valid = false;
-		x++;
-	}
-}
-
-void	vertical_check(t_game *game, int y, int x)
-{
-	while (game->map->matrix[y][x])
-	{
-		if (game->map->matrix[y][x] != '1')
-			game->map->is_map_valid = false;
-		y++;
-	}
-}*/
+*/

@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 10:34:35 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:28:20 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ void	init_images(t_game *game)
 	game->tiles->exit_closed, &height, &width);
 }
 
-void	init(t_game *game, const char *file)
+void	init(t_game *game, const char *file, int ac)
 {
 	init_map(game, file);
 	init_tiles(game);
 	parse(file, game);
+	validate(ac, game);
 	init_win(game, file);
 }
