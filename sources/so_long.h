@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 08:58:49 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 10:51:20 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define LEFT 97
 # define DOWN 115
 # define RIGHT 100
-# define ESC 65307
+# define ESCAPE 65307
 # define UP_ARROW 65362
 # define DOWN_ARROW 65364
 # define LEFT_ARROW 65361
