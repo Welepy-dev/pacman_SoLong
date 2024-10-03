@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:17:46 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 10:51:25 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:09:23 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void	flood_fill_validate(char **clone_map, t_game *game)
 			ft_strchr(clone_map[x], 'C') != NULL)
 		{
 			game->map->is_map_valid = false;
-			ft_matrix_free(clone_map);
-			//exit (1);
+			close_window(game);
 		}
 		x++;
 	}

@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:38:55 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 10:51:21 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:53:47 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	render_map(t_game *game)
 {
 	int	x;
 	int	y;
-	int	width;
-	int	height;
 
 	y = 0;
 	init_images(game);
@@ -26,14 +24,14 @@ void	render_map(t_game *game)
 		x = 0;
 		while (x < game->window->width / 32)
 		{
-			put_tile(game, x, y, game->map->matrix[y][x]);
+			put_tile(game, x, y);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	put_tile(t_game *game, int x, int y, char id)
+void	put_tile(t_game *game, int x, int y)
 {
 	if (game->map->matrix[y][x] == '1')
 		mlx_put_image_to_window(game->window->mlx, \

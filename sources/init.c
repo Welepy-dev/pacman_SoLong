@@ -6,13 +6,13 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 20:13:31 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 10:51:25 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:57:46 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(t_game *game, const char *file)
+void	init_map(t_game *game)
 {
 	game->map->pac_x = 0;
 	game->map->pac_y = 0;
@@ -62,11 +62,11 @@ void	init_images(t_game *game)
 	game->tiles->exit_closed, &height, &width);
 }
 
-void	init(t_game *game, const char *file, int ac)
+void	init(t_game *game, const char *file)
 {
-	init_map(game, file);
+	init_map(game);
 	init_tiles(game);
 	parse(file, game);
-	validate(ac, game, file);
+	validate(game);
 	init_win(game, file);
 }

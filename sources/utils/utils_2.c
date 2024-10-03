@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:31:00 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 10:51:26 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:10:57 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	check_lines(t_game *game)
 {
 	int		i;
 	int		len;
-	
+
 	i = 0;
 	len = ft_strlen(game->map->matrix[0]) - 1;
-	while (i < (ft_matrix_len(game->map->matrix) - 1))
+	while ((size_t)i < (ft_matrix_len(game->map->matrix) - 1))
 	{
-		if ((ft_strlen(game->map->matrix[i]) - 1) != len)
+		if ((ft_strlen(game->map->matrix[i]) - 1) != (size_t)len)
 			game->map->is_map_valid = false;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 10:51:21 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:55:45 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	game.tiles = &tiles;
 	game.window = &window;
 	game.img = &img;
-	init(&game, av[1], ac);
+	init(&game, av[1]);
 	render_map(&game);
 	mlx_hook(window.win, 17, 0, close_window, &game);
 	mlx_key_hook(window.win, key_hook, &game);

@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 20:46:50 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 10:51:19 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 11:56:11 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	validate_args(int ac, const char *av)
 		print_error("Invalid file extension");
 }
 
-void	validate(int ac, t_game *game, const char *av)
+void	validate(t_game *game)
 {	
 	char	**map;
 	int		height;

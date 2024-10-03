@@ -5,34 +5,51 @@
 #                                                     +:+ +:+         +:+      #
 #    By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/14 14:34:40 by marcsilv          #+#    #+#              #
-#    Updated: 2024/09/29 18:47:31 by marcsilv         ###   ########.fr        #
+#    Created: 2024/10/03 12:05:53 by marcsilv          #+#    #+#              #
+#    Updated: 2024/10/03 12:05:56 by marcsilv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-SRC_DIR = sources
-SRCS = 	./sources/init.c \
-	./sources/utils.c \
-	./sources/parser.c \
-	./sources/so_long.h \
-	./sources/so_long.c  \
-	./sources/movement.c  \
-	./sources/render_map.c \
-	./sources/validation.c  \
+CFLAGS = -Wall -Wextra -Werror
+LDFLAGS = -Lmlx_linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+SRC_DIR = srcs
+UTILS_DIR = $(SRC_DIR)/utils
+INC_DIR = includes
+OBJ_DIR = .
+HEADER = so_long.h
 
-OBJS = $(SRCS:.c=.o)
+SRC_FILES =		./sources/init.c ./sources/movement.c ./sources/parser.c ./sources/render_map.c ./sources/so_long.c ./sources/validation.c \
+				./sources/utils/utils.c ./sources/utils/utils_2.c
+                
+OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ_PATHS = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
 
-all: $(TARGET)
+LIBFT = ./sources/libft/Makefile
 
-make_libft:
-	make -C ./sources/libft
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+all: $(NAME)
+
+$(NAME): $(OBJ_PATHS)
+	$(MAKE) -C $(dir $(LIBFT))
+	$(CC) $(OBJ_PATHS) -L./sources/libft -lft $(LDFLAGS) -o $(NAME)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I $(INC_DIR) -I mlx_linux -I ./sources/libft/includes -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I $(INC_DIR) -I mlx_linux -I ./sources/libft/includes -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJ_PATHS)
+	$(MAKE) -C $(dir $(LIBFT)) clean
+
+fclean: clean
+	rm -f $(NAME)
+	$(MAKE) -C $(dir $(LIBFT)) fclean
+
+re: fclean all
+
+.PHONY: all clean fclean re
