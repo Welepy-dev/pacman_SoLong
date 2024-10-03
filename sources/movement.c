@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:54:12 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/09/29 09:34:09 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 09:03:18 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,6 @@ int	key_hook(int keycode, t_game *game)
 	else if (keycode == RIGHT || keycode == RIGHT_ARROW)
 		move_to(game, game->map->pac_x + 1, game->map->pac_y);
 	else if (keycode == ESC)
-	{
-		destroy_images(game);
-		mlx_destroy_window(game->window->mlx, game->window->win);
-		mlx_destroy_display(game->window->mlx);
-		ft_matrix_free(game->map->matrix);
-		free(game->window->mlx);
-		exit(0);
-	}
+		close_window(game);
 	return (0);
 }

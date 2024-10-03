@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:12:59 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/02 16:40:56 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/03 08:58:49 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	flood_fill(t_game *game, char **clone_map, int x, int y);
 
 char	**copy_map(char **map);
 
+int		close_window(t_game *game);
 int		count_lines(const char *file);
 int		count_columns(const char *file);
 int		key_hook(int keycode, t_game *game);
