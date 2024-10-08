@@ -1,11 +1,5 @@
 {
-        "files.associations": {
-		"ft_printf.h": "c",
-		"so_long.h": "c",
-		"unistd.h": "c",
-		"stdbool.h": "c",
-		"mlx.h": "c",
-		"libft.h": "c",
-		"mlx_int.h": "c"
+	"files.associations": {
+		"so_long.h": "c"
 	}
 }

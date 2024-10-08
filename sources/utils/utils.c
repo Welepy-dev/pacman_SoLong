@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:17:46 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 12:09:23 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/08 10:07:22 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,23 @@ void	flood_fill(t_game *game, char **clone_map, int x, int y)
 	}
 }
 
-void	flood_fill_validate(char **clone_map, t_game *game)
+void	flood_fill_validate(t_game *game)
 {
-	int	x;
+	char	**map;
+	int		x;
 
 	x = 0;
-	flood_fill(game, clone_map, game->map->pac_x, game->map->pac_y);
-	while (clone_map[x] != NULL)
+	map = copy_map(game->map->matrix);
+	flood_fill(game, map, game->map->pac_x, game->map->pac_y);
+	while (map[x] != NULL)
 	{
-		if (ft_strchr(clone_map[x], 'E') != NULL || \
-			ft_strchr(clone_map[x], 'C') != NULL)
-		{
-			game->map->is_map_valid = false;
-			close_window(game);
-		}
+		if (ft_strchr(map[x], 'E') != NULL || \
+			ft_strchr(map[x], 'C') != NULL)
+			{
+				game->map->is_map_valid = false;
+				print_error("Invalid map");
+			}
 		x++;
 	}
-	ft_matrix_free(clone_map);
+	ft_matrix_free(map);
 }

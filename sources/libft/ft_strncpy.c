@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrix_free.c                                   :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/29 08:46:56 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/08 09:52:52 by marcsilv         ###   ########.fr       */
+/*   Created: 2024/10/03 13:56:49 by marcsilv          #+#    #+#             */
+/*   Updated: 2024/10/08 09:15:56 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_matrix_free(char **matrix)
+char	*ft_strncpy(const char *src, size_t len)
 {
-	int	i;
+	int		i;
+	char	*dst;
 
 	i = 0;
-	while (matrix[i])
+	dst = malloc(sizeof(char) * (len + 1));
+	if (!dst)
+		return (NULL);
+	while (src[i] && (size_t)i < len)
 	{
-		free(matrix[i]);
+		dst[i] = src[i];
 		i++;
 	}
-	free(matrix);
+	dst[i] = '\0';
+	return (dst);
 }
