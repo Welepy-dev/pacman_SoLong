@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 13:08:01 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/03 11:55:45 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:55:00 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ int	main(int ac, char **av)
 	mlx_loop(window.mlx);
 	return (0);
 }
-//makefile

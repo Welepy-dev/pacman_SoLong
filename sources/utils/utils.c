@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:17:46 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/08 10:07:22 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:59:43 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	flood_fill_validate(t_game *game)
 			ft_strchr(map[x], 'C') != NULL)
 			{
 				game->map->is_map_valid = false;
+				ft_matrix_free(map);
+				ft_matrix_free(game->map->matrix);
 				print_error("Invalid map");
 			}
 		x++;

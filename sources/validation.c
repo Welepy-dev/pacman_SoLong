@@ -6,7 +6,7 @@
 /*   By: marcsilv <marcsilv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 20:46:50 by marcsilv          #+#    #+#             */
-/*   Updated: 2024/10/08 10:03:13 by marcsilv         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:12:57 by marcsilv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	validate(t_game *game)
 	width = ft_strlen(game->map->matrix[0]);
 	if (height < 3 || width < 3 || width == height)
 		game->map->is_map_valid = false;
+	check_number_of_objects(game);
 	check_lines(game);
 	find_player(game);
 	check_borders(game);
 	check_chars(game->map);
-	check_number_of_objects(game);
 	if (game->map->is_map_valid == false)
 	{
 		ft_matrix_free(game->map->matrix);
